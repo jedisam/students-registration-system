@@ -13,7 +13,7 @@ class Student:
 
     def addStudent(self):
         decor()
-        print('Enter Student Name: ')
+        print('\nEnter Student Name: ')
         self._id = input('ID: ')
         self._name = input('Name: ').upper()
         self._year = input('Year: ')
@@ -25,15 +25,25 @@ class Student:
         outfile = open('student.txt', 'at')
         print(student, file=outfile)
         outfile.close()
-        print('\t\t Student has been added successfully!')
+        print('\t\t Student has been added successfully!\n')
+        permission = input('Do U wanna Continue? [Y|N] ').upper()
+        if(permission == 'Y'):
+            main()
+        else:
+            print("""
+            
+                        Good Bye!
+            
+            \n\n""")
 
     def displayAll(self):
         decor()
+        print()
         infile = open('student.txt', 'rt')
         if(infile == ''):
             print("""
-                No Student on the database!
-             """)
+                \nNo Student on the database!
+            """)
         else:
             count = 0
             print()
@@ -48,13 +58,23 @@ class Student:
                 print(
                     f'{count}) ID: {ID} \t Name: {Name} \t Year: {Year} \t Department: {Department} \t Block: {Block}')
                 # print(line.rstrip())
+            infile.close()
             print()
+        permission = input('Do U wanna Continue? [Y|N] ').upper()
+        if(permission == 'Y'):
+            main()
+        else:
+            print("""
+            
+                        Good Bye!
+            
+            \n\n""")
 
     def updateStudent(self):
         decor()
         update = False
         dict1 = {}
-        id = input('Enter the Id of the student u wanna update: ')
+        id = input('\nEnter the Id of the student u wanna update: ')
         infile = open('student.txt', 'r')
         outfile = open('student1.txt', 'at')
         for line in infile:
@@ -67,8 +87,11 @@ class Student:
                 dict1['Year'] = diction['Year']
                 dict1['Department'] = diction['Department']
                 dict1['Block'] = diction['Block']
+                print(
+                    f'\n\t\tID: { dict1["ID"]} \t Name: { dict1["Name"]} \t Year: { dict1["Year"]} \t Department: { dict1["Department"]} \t Block: { dict1["Block"]}\n')
                 update = True
-                updateField = input('Enter the field u wanna update: ').upper()
+                updateField = input(
+                    'Enter the field u wanna update: ').upper()
                 if(updateField == 'ID'):
                     dict1['ID'] = int(input('Enter ID: '))
                 elif(updateField == 'NAME'):
@@ -76,7 +99,8 @@ class Student:
                 elif(updateField == 'YEAR'):
                     dict1['Year'] = int(input('Enter Year'))
                 elif(updateField == 'DEPARTMENT'):
-                    dict1['Department'] = input('Enter Department: ').upper()
+                    dict1['Department'] = input(
+                        'Enter Department: ').upper()
                 elif(updateField == 'BLOCK'):
                     dict1['Block'] = int(input('Enter Block'))
                 else:
@@ -90,13 +114,54 @@ class Student:
             os.rename('student1.txt', 'student.txt')
             print('\n Student has been successfully Updated!')
         else:
-            print(f'No Student found with ID {id}')
+            print(f'No Student found with ID "{id}"')
             os.rename('student1.txt', 'student.txt')
+        permission = input('Do U wanna Continue? [Y|N] ').upper()
+        if(permission == 'Y'):
+            main()
+        else:
+            print("""
+            
+                        Good Bye!
+            
+            \n\n""")
+
+    def search(self):
+        decor()
+        searchName = input('Enter the Name of the Student: ').upper()
+        infile = open('student.txt', 'r')
+        for line in infile:
+            diction = eval(str(line))
+            if(diction['Name'] == searchName):
+                ID = diction['ID']
+                Name = diction['Name']
+                Year = diction['Year']
+                Department = diction['Department']
+                Block = diction['Block']
+                print('\n\t\t\t\tStudent Found!')
+                print(
+                    f'\n\t\tID: {ID} \t Name: {Name} \t Year: {Year} \t Department: {Department} \t Block: {Block}\n')
+                break
+        else:
+            print("""
+                            No Student found with given Name!
+            """)
+
+        permission = input('Do U wanna Continue? [Y|N] ').upper()
+        if(permission == 'Y'):
+            main()
+        else:
+            print("""
+            
+                        Good Bye!
+            
+            \n\n""")
 
     def removeStudent(self):
         decor()
         delete = False
-        name = input('Enter the name of the student u wanna delete: ').upper()
+        name = input(
+            '\nEnter the name of the student u wanna delete: ').upper()
         infile = open('student.txt', 'r')
         outfile = open('student1.txt', 'at')
         for line in infile:
@@ -115,29 +180,38 @@ class Student:
         else:
             print(f'No Student found with Name {name}')
             os.rename('student1.txt', 'student.txt')
+        permission = input('Do U wanna Continue? [Y|N] ').upper()
+        if(permission == 'Y'):
+            main()
+        else:
+            print("""
+            
+                        Good Bye!
+            
+            \n\n""")
 
 
 def decor():
-    print('\t\t\t\t  AASTU')
+    print('\n\t\t\t\t  AASTU')
     print('\t\t==Welcome to student Registration==')
 
 
 def main():
-    print('\t\t\t\t==================================')
+    print('\n\t\t\t\t==================================')
     print('\t\t\t\t|                                |')
-    print('\t\t\t\t|      AASTU STUDENT             |')
+    print('\t\t\t\t|          AASTU  STUDENT        |')
     print('\t\t\t\t|                                |')
-    print('\t\t\t\t|      REGISTRATION              |')
+    print('\t\t\t\t|           REGISTRATION         |')
     print('\t\t\t\t|                                |')
     print('\t\t\t\t|         System                 |')
     print('\t\t\t\t|                                |')
-    print('\t\t\t\t|                                |')
-    print('\t\t\t\t|         Press                  |')
-    print('\t\t\t\t|   1. To add a student          |')
-    print('\t\t\t\t|   2. To display students       |')
-    print('\t\t\t\t|   3. to Update student         |')
-    print('\t\t\t\t|   4. to remove student         |')
-    print('\t\t\t\t|                                |')
+    print('\t\t\t\t|           Press                |')
+    print('\t\t\t\t|     1. To add a student        |')
+    print('\t\t\t\t|     2. To display students     |')
+    print('\t\t\t\t|     3. to Update student       |')
+    print('\t\t\t\t|     4. Search for a Student    |')
+    print('\t\t\t\t|     5. to remove student       |')
+    print('\t\t\t\t|     0. EXIT                    |')
     print('\t\t\t\t==================================')
 
     choice = int(input('Choice: '))
@@ -149,7 +223,16 @@ def main():
     elif(choice == 3):
         student.updateStudent()
     elif(choice == 4):
+        student.search()
+    elif(choice == 5):
         student.removeStudent()
+    else:
+        print("""
+            
+                        \t\tGood Bye!
+            
+            """)
+        SystemExit()
 
 
 if __name__ == '__main__':

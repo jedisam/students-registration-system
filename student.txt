@@ -1,1 +1,5 @@
 {'ID': '14', 'Name': 'JAMES', 'Year': 1, 'Department': 'CHEMICAL', 'Block': '4'}
+{'ID': '189', 'Name': 'CALEB', 'Year': '4', 'Sex': 'M', 'Department': 'FOOD', 'Block': '4'}
+{'ID': '67', 'Name': 'LEXI', 'Year': '1', 'Sex': 'F', 'Department': 'SOCIOLOGY', 'Block': '78'}
+{'ID': '77', 'Name': 'METI', 'Year': '2', 'Sex': 'F', 'Department': 'ART', 'Block': '1'}
+{'ID': '573', 'Name': 'ZACK', 'Year': '2', 'Department': 'ANALYSIS', 'Block': '14'}
