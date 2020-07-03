@@ -116,6 +116,7 @@ class Student:
         else:
             print(f'No Student found with ID "{id}"')
             os.rename('student1.txt', 'student.txt')
+        os.remove('student1.txt')
         permission = input('Do U wanna Continue? [Y|N] ').upper()
         if(permission == 'Y'):
             main()
@@ -180,6 +181,7 @@ class Student:
         else:
             print(f'No Student found with Name {name}')
             os.rename('student1.txt', 'student.txt')
+        os.remove('student1.txt')
         permission = input('Do U wanna Continue? [Y|N] ').upper()
         if(permission == 'Y'):
             main()
