@@ -129,24 +129,52 @@ class Student:
 
     def search(self):
         decor()
-        searchName = input('Enter the Name of the Student: ').upper()
-        infile = open('student.txt', 'r')
-        for line in infile:
-            diction = eval(str(line))
-            if(diction['Name'] == searchName):
-                ID = diction['ID']
-                Name = diction['Name']
-                Year = diction['Year']
-                Department = diction['Department']
-                Block = diction['Block']
-                print('\n\t\t\t\tStudent Found!')
-                print(
-                    f'\n\t\tID: {ID} \t Name: {Name} \t Year: {Year} \t Department: {Department} \t Block: {Block}\n')
-                break
-        else:
-            print("""
-                            No Student found with given Name!
-            """)
+        print('\t\t\t=========================================\n')
+        print("""
+                                    Search Options\n
+                                press 1) to search by ID
+                                      2) to search by name
+        """)
+        print('\t\t\t=========================================\n')
+        option = int(input('Option:'))
+        if (option == 1):
+            searchID = input('Enter the Name of the Student: ')
+            infile = open('student.txt', 'r')
+            for line in infile:
+                diction = eval(str(line))
+                if(diction['ID'] == searchID):
+                    ID = diction['ID']
+                    Name = diction['Name']
+                    Year = diction['Year']
+                    Department = diction['Department']
+                    Block = diction['Block']
+                    print('\n\t\t\t\tStudent Found!')
+                    print(
+                        f'\n\t\tID: {ID} \t Name: {Name} \t Year: {Year} \t Department: {Department} \t Block: {Block}\n')
+                    break
+            else:
+                print("""
+                                No Student found with given Name!
+                """)
+        elif (option == 2):
+            searchName = input('Enter the Name of the Student: ').upper()
+            infile = open('student.txt', 'r')
+            for line in infile:
+                diction = eval(str(line))
+                if(diction['Name'] == searchName):
+                    ID = diction['ID']
+                    Name = diction['Name']
+                    Year = diction['Year']
+                    Department = diction['Department']
+                    Block = diction['Block']
+                    print('\n\t\t\t\tStudent Found!')
+                    print(
+                        f'\n\t\tID: {ID} \t Name: {Name} \t Year: {Year} \t Department: {Department} \t Block: {Block}\n')
+                    break
+            else:
+                print("""
+                                No Student found with given Name!
+                """)
 
         permission = input('Do U wanna Continue? [Y|N] ').upper()
         if(permission == 'Y'):
@@ -194,8 +222,8 @@ class Student:
 
 
 def decor():
-    print('\n\t\t\t\t  AASTU')
-    print('\t\t==Welcome to student Registration==')
+    print('\n\t\t\t\t  AASTU\n')
+    print('\t\t\t===Welcome to student Registration System===\n')
 
 
 def main():
