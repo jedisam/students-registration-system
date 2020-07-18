@@ -26,13 +26,13 @@ class Student:
         self._department = input('Department: ').upper()
         self._block = input('Block: ')
         # Drop if DB exists
-        self.cur.execute("DROP TABLE IF EXISTS student")
+        # self.cur.execute("DROP TABLE IF EXISTS student")
         # if not create new DB
-        self.cur.execute("""
-        CREATE TABLE student (
-            id INTEGER PRIMARY KEY, name TEXT, year INTEGER, department TEXT, block INTEGER
-        )
-        """)
+        # self.cur.execute("""
+        # CREATE TABLE student (
+        #     id INTEGER PRIMARY KEY, name TEXT, year INTEGER, department TEXT, block INTEGER
+        # ) IF NOT EXISTS
+        # """)
         self.cur.execute(f"""
         INSERT INTO student (name, year, department, block) VALUES ('{self._name}', {self._year}, '{self._department}', {self._block})
         """)
@@ -42,6 +42,7 @@ class Student:
         if(permission == 'Y'):
             main()
         else:
+            self.db.close()
             print("""
 
                         Good Bye!
@@ -53,6 +54,17 @@ class Student:
         print()
         for row in self.cur.execute("SELECT * FROM student"):
             print(row)
+         print('\t\t Student has been added successfully!\n')
+        permission = input('Do U wanna Continue? [Y|N] ').upper()
+        if(permission == 'Y'):
+            main()
+        else:
+            self.db.close()
+            print("""
+
+                        Good Bye!
+
+            \n\n""")
 
     def updateStudent(self):
         decor()
